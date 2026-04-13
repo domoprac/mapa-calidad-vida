@@ -1,0 +1,34 @@
+# =============================================
+# Configuración del Mapa de Calidad de Vida
+# =============================================
+
+project:
+  name: "Mapa Calidad de Vida España"
+  version: "0.1.0"
+  author: "domoprac"
+
+# Pesos del índice de calidad de vida (deben sumar 100)
+weights:
+  servicios_esenciales: 35    # Hospitales, centros de salud, colegios, farmacias
+  conectividad_y_energia: 28  # Fibra óptica, 5G, cobertura móvil, electricidad
+  ocio_y_naturaleza: 20       # Parques, deportes, cultura, ocio
+  coste_de_vida: 17           # Vivienda, impuestos, supermercados, etc.
+
+# Parámetros de normalización y puntuación
+scoring:
+  max_time_hospital: 45       # minutos (más de esto = 0 puntos)
+  max_time_colegio: 30
+  fibra_min_velocidad: 100    # Mbps
+  puntos_bonus_ocio: 15       # puntos extra por buena oferta cultural/deportiva
+
+# Rutas de archivos (relativas al proyecto)
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  municipalities_geojson: "data/processed/municipios_enriquecidos.geojson"
+  final_tiles: "web/tiles"
+
+# Configuración de OSRM (routing)
+osrm:
+  server_url: "http://localhost:5000"   # cuando tengas OSRM corriendo localmente
+  profile: "car"                        # coche por defecto
